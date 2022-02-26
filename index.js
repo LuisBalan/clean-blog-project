@@ -11,19 +11,19 @@ app.use(express.static('public'));
 
 
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './pages/index.html'))
+    res.render('index');
 });
 
 app.get('/about', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './pages/about.html'))
+    res.render('about');
 });
 
 app.get('/post', (request, response) => {
-    response.sendFile(path.resolve(__dirname, './pages/post.html'))
+    response.render('post')
 });
 
 app.get('/contact', (request, response) => {
-    response.sendFile(path.resolve('./pages/contact.html'))
+    response.render('contact')
 });
 
 
