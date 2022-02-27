@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const BlogPost = require('./models/BlogPost');
 
-mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://balanAdminDB:JNbd63fYqbmih7K4@cluster0.xfkki.mongodb.net/clean-blog-project-DB?retryWrites=true&w=majority")
 
 BlogPost.create({
     title: 'The Mythbuster’s Guide to Saving Money on Energy Bills',
@@ -11,8 +11,6 @@ BlogPost.create({
     topics, because once you get past the boring bullet-point lists, a whole new world of thrifty nerdery
     opens up. You know those bullet-point lists. You start spotting them everything at this time of year.
     They go like this:`
-    }, () => {
-    console.log('success')
-    })
-
-    console.log(BlogPost)
+    }, (error, blogpost) => {
+    console.log(error, blogpost)
+    });
