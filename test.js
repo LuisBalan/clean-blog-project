@@ -1,8 +1,22 @@
+require('dotenv').config();
+// console.log(process.env)
+// require(process.env)
 const mongoose = require('mongoose');
 
 const BlogPost = require('./models/BlogPost');
 
-mongoose.connect("mongodb+srv://balanAdminDB:JNbd63fYqbmih7K4@cluster0.xfkki.mongodb.net/clean-blog-project-DB?retryWrites=true&w=majority")
+// function connect({DB_USER, DB_PASSWORD, DB_HOST, DB_NAME}){
+//     const URL = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`
+//     return mongoose.connect(URL)
+// }
+
+// const URL = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`
+// const URL = `mongodb+srv://balanAdminDB:JNbd63fYqbmih7K4@cluster0.xfkki.mongodb.net/clean-blog-project-DB?retryWrites=true&w=majority`
+const URL = `mongodb+srv://balanAdminDB:JNbd63fYqbmih7K4@cluster0.xfkki.mongodb.net/myFirstDatabase-DBe?retryWrites=true&w=majority`
+mongoose.connect(URL)
+
+
+
 
 //CREATE
 BlogPost.create({
@@ -34,7 +48,7 @@ BlogPost.create({
             console.log(error, blogpost)
         });
     
-    // let id = '621abeecf5a9696fc1427aba';
+    let id = '621abeecf5a9696fc1427aba';
 
     BlogPost.findById(id, (error, blogpost) => {
         console.log(error, blogpost)
