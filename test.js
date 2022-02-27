@@ -12,8 +12,9 @@ const BlogPost = require('./models/BlogPost');
 
 // const URL = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`
 // const URL = `mongodb+srv://balanAdminDB:JNbd63fYqbmih7K4@cluster0.xfkki.mongodb.net/clean-blog-project-DB?retryWrites=true&w=majority`
-const URL = `mongodb+srv://balanAdminDB:JNbd63fYqbmih7K4@cluster0.xfkki.mongodb.net/myFirstDatabase-DBe?retryWrites=true&w=majority`
-mongoose.connect(URL)
+// const URL = `mongodb+srv://balanAdminDB:JNbd63fYqbmih7K4@cluster0.xfkki.mongodb.net/myFirstDatabase-DBe?retryWrites=true&w=majority`
+mongoose.connect("mongodb+srv://balanDBAdmin:ZzSJpUoCJEjYBbZb@didactic-cluster.xfkki.mongodb.net/clean-blog-project-DB?retryWrites=true&w=majority")
+// mongoose.connect(URL)
 
 
 
