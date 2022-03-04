@@ -41,12 +41,18 @@ app.get('/posts/new', (req, res) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.post('/posts/store', (req, res) => {
-    //model creates a new doc with browser data
-    BlogPost.create(req.body, (error, blospost) => {
-    res.redirect('/')
-    });
-    console.log(req.body)
+// app.post('/posts/store', (req, res) => {
+//     //model creates a new doc with browser data
+//     BlogPost.create(req.body, (error, blospost) => {
+//     res.redirect('/')
+//     });
+//     console.log(req.body)
+// });
+
+app.post('/posts/store', async (req, res) => {
+    await BlogPost.create(req.body);
+    console.log(req.body);
+    res.redirect('/');
 });
 
 app.listen(4000, () => {
