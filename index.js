@@ -1,4 +1,4 @@
-const { application } = require('express');
+
 const express = require('express');
 const res = require('express/lib/response');
 const path = require('path');
@@ -6,11 +6,12 @@ const app = new express();
 const ejs = require('ejs');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const BlogPost = require('./models/BlogPost.js');
 
 
-// const URL = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`
-// mongoose.connect(URL)
-// mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true});
+const URL = `mongodb+srv://balanAdminDB:JNbd63fYqbmih7K4@didactic-cluster.xfkki.mongodb.net/clean-blog-project?retryWrites=true&w=majority`
+mongoose.connect(URL)
+
 
 app.set('view engine', 'ejs');
 
@@ -37,9 +38,15 @@ app.get('/posts/new', (req, res) => {
     res.render('create');
 });
 
-app.post('/post/store', (req, res) => {
-    console.log(req.body)
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+
+app.post('/posts/store', (req, res) => {
+    //model creates a new doc with browser data
+    BlogPost.create(req.body, (error, blospost) => {
     res.redirect('/')
+    });
+    console.log(req.body)
 });
 
 app.listen(4000, () => {
