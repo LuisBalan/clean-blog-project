@@ -6,6 +6,7 @@ const ejs = require('ejs');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const BlogPost = require('./models/BlogPost.js');
+const fileUpload = require('express-fileupload')
 
 
 const URL = `mongodb+srv://balanAdminDB:JNbd63fYqbmih7K4@didactic-cluster.xfkki.mongodb.net/clean-blog-project?retryWrites=true&w=majority`
@@ -40,11 +41,22 @@ app.get('/posts/new', (request, response) => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(fileUpload);
 
-app.post('/posts/store', async (request, response) => {
-    await BlogPost.create(request.body);
-    console.log(request.body);
-    response.redirect('/');
+app.post('/posts/store', (request, response) => {
+    let image = req.files.image;
+    image.mv(path.resolve(__dirname, 'public/img', image.name),
+    async (error) => {
+        await BlogPost.create(req.body)
+        response.redirect("/")
+
+    })
+
+
+
+    // await BlogPost.create(request.body);
+    // console.log(request.body);
+    // response.redirect('/');
 });
 
 app.listen(4000, () => {
